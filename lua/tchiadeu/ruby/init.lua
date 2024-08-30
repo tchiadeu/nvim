@@ -1,0 +1,1 @@
+require("tchiadeu.ruby.rspec")

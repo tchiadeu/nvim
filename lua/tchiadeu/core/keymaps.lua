@@ -25,7 +25,3 @@ keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "move the line up" })
 -- move with cursor replaced
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "move to end of screen and place cursor at middle" })
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move to start of screen and place cursor at middle" })
-
--- balises for erb
-keymap.set("i", "<leader>pe", "<%=  %><ESC>hhi", { desc = "open a displayed balise" })
-keymap.set("i", "<leader>er", "<%  %><ESC>hhi", { desc = "open a undisplayed balise" })

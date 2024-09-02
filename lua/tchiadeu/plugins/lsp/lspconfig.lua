@@ -19,10 +19,10 @@ return {
         local line_number = diagnostic.lnum
         local line_content = vim.api.nvim_buf_get_lines(bufnr, line_number, line_number + 1, false)[1]
         if line_content:match("disable:LSP") then
-          -- vim.diagnostic.disable(bufnr, diagnostic.namespace, diagnostic)
           vim.diagnostic.config({
             virtual_text = false,
-            underline = false
+            underline = false,
+            signs = false
           })
         end
       end

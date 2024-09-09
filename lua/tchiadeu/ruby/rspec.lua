@@ -1,8 +1,9 @@
 local zellij = "~/.config/zellij/./zellij"
 
 local test_current_file = function()
+  local position = "--height '80%' --width '80%' -x '10%' -y '10%'"
   local current_file = vim.fn.expand('%')
-  vim.cmd(":!" .. zellij .. " run -d Down -n 'Testing current file' -- bundle exec rspec " .. current_file)
+  vim.fn.system(zellij .. " run -f " .. position .. " -n 'Testing current file' -- bundle exec rspec " .. current_file)
 end
 vim.keymap.set("n", "<leader>tc", test_current_file)
 

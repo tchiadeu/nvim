@@ -12,21 +12,21 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local keymap = vim.keymap
 
-    local function filter_diagnostics()
-      local bufnr = vim.api.nvim_get_current_buf()
-      local diagnostics = vim.diagnostic.get(bufnr)
-      for _, diagnostic in ipairs(diagnostics) do
-        local line_number = diagnostic.lnum
-        local line_content = vim.api.nvim_buf_get_lines(bufnr, line_number, line_number + 1, false)[1]
-        if line_content:match("disable:LSP") then
-          vim.diagnostic.config({
-            virtual_text = false,
-            underline = false,
-            signs = false
-          })
-        end
-      end
-    end
+    -- local function filter_diagnostics()
+    --   local bufnr = vim.api.nvim_get_current_buf()
+    --   local diagnostics = vim.diagnostic.get(bufnr)
+    --   for _, diagnostic in ipairs(diagnostics) do
+    --     local line_number = diagnostic.lnum
+    --     local line_content = vim.api.nvim_buf_get_lines(bufnr, line_number, line_number + 1, false)[1]
+    --     if line_content:match("disable:LSP") then
+    --       vim.diagnostic.config({
+    --         virtual_text = false,
+    --         underline = false,
+    --         signs = false
+    --       })
+    --     end
+    --   end
+    -- end
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -73,12 +73,12 @@ return {
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 
         -- Apply the diagnostic filter whenever diagnostics change
-        vim.api.nvim_create_autocmd("DiagnosticChanged", {
-          buffer = ev.buf,
-          callback = filter_diagnostics,
-        })
+        -- vim.api.nvim_create_autocmd("DiagnosticChanged", {
+        --   buffer = ev.buf,
+        --   callback = filter_diagnostics,
+        -- })
         -- Also apply the filter when the LSP first attaches
-        filter_diagnostics()
+        -- filter_diagnostics()
       end,
     })
 
